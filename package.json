@@ -56,10 +56,5 @@
     "wechaty-puppet-wechat4u": "^0.18",
     "wechaty-puppet-whatsapp": "^0.3.3",
     "wechaty-puppet-xp": "^0.7.2"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "npx git-scripts-pre-push"
-    }
   }
 }
