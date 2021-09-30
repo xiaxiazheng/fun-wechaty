@@ -16,7 +16,8 @@
     "start:whatsapp:web": "cross-env WECHATY_LOG=verbose WECHATY_PUPPET=wechaty-puppet-whatsapp npm start",
     "test": "npm-run-all lint test:version test:smoke",
     "test:smoke": "tap --node-arg=--loader=ts-node/esm --node-arg=--no-warnings \"tests/**/*.spec.ts\"",
-    "test:version": "check-node-version --node \">= 14\""
+    "test:version": "check-node-version --node \">= 14\"",
+    "startPm2": "pm2 start npm -- run start:wechat:web"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "dotenv": "^10.0.0",
     "node-fetch": "^3.0.0",
     "node-schedule": "^2.0.0",
+    "pm2": "^5.1.2",
     "qrcode-terminal": "^0.12.0",
     "superagent": "^6.1.0",
     "wechaty": "^0.69.45",
