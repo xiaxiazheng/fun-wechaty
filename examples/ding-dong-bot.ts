@@ -52,7 +52,8 @@ const bot = new Wechaty({
 });
 
 // 接口
-const url = "http://localhost:300/api/spider";
+// const url = "http://localhost:300/api/spider";
+const url = "https://www.xiaxiazheng.cn/api/spider";
 const getRoomsList = async () => {
   const res = await fetch(`${url}/getRoomsList`);
   return await res.json();
