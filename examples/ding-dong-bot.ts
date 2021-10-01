@@ -67,7 +67,7 @@ const getAfternoonJobMsg = async () => {
   return await res.json();
 };
 const getEveningJobMsg = async () => {
-  const res = await fetch(`${url}/getAfternoonJobMsg`);
+  const res = await fetch(`${url}/getEveningJobMsg`);
   return await res.json();
 };
 
