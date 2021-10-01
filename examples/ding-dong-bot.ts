@@ -66,20 +66,31 @@ const getAfternoonJobMsg = async () => {
   const res = await fetch(`${url}/getAfternoonJobMsg`);
   return await res.json();
 };
+const getEveningJobMsg = async () => {
+  const res = await fetch(`${url}/getAfternoonJobMsg`);
+  return await res.json();
+};
 
 // 要执行的任务
 const morningJob = async (list: any) => {
   const msg: any = await getMorningJobMsg();
   list.forEach((item: any) => {
     const { room, roomName } = item;
-    room.say(msg[roomName]);
+    msg?.[roomName] && room.say(msg[roomName]);
   });
 };
 const afternoonJob = async (list: any) => {
   const msg: any = await getAfternoonJobMsg();
   list.forEach((item: any) => {
     const { room, roomName } = item;
-    room.say(msg[roomName]);
+    msg?.[roomName] && room.say(msg[roomName]);
+  });
+};
+const eveningJob = async (list: any) => {
+  const msg: any = await getEveningJobMsg();
+  list.forEach((item: any) => {
+    const { room, roomName } = item;
+    msg?.[roomName] && room.say(msg[roomName]);
   });
 };
 
@@ -101,14 +112,13 @@ const getRoom: any = async (list: any[]) => {
     })
 
     console.log('执行定时任务1');
-    const rule1 = new schedule.RecurrenceRule();
-    rule1.hour = [9];
-    schedule.scheduleJob(rule1, () => morningJob(list));
+    schedule.scheduleJob("0 0 9 * * *", () => morningJob(list));
 
     console.log('执行定时任务2');
-    const rule2 = new schedule.RecurrenceRule();
-    rule2.hour = [15];
-    schedule.scheduleJob(rule2, () => afternoonJob(list));
+    schedule.scheduleJob("0 10 14 * * *", () => afternoonJob(list));
+
+    console.log('执行定时任务3');
+    schedule.scheduleJob("0 0 23 * * *", () => eveningJob(list));
 
   } else {
     console.log("查找 room 失败，继续查找");
